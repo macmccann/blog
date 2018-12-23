@@ -1,0 +1,28 @@
+#post {
+    margin-top: 20px;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #333;
+}
+
+#header > .content > p {
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#post-meta > h2 {
+    margin: 0;
+}
+
+#post-meta > p {
+    color: #333333;
+    font-size: 13px;
+}
+
+#post-meta {
+    margin-bottom: 20px;
+}

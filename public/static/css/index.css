@@ -1,0 +1,107 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    background-color: rgb(246, 246, 250);
+}
+
+#header {
+    background-color: #120020;
+    color: #ffffff;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.content {
+    width: 32%;
+    min-width: 240px;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+li {
+    list-style: none;
+    margin-bottom: 25px;
+}
+
+a {
+    color: #000088;
+}
+
+#header > .content > h1 > a {
+    color: #e3e3ee
+}
+
+#header > .content > h1 > a:clicked {
+    color: #e3e3ee;
+}
+
+#header > .content > span > a {
+    color: #e3e3ee;
+    margin-right: 10px;
+}
+
+#header > .content > span > a:clicked {
+    color: #e3e3ee;
+    margin-right: 10px;
+}
+
+#header > .content > span {
+    padding-bottom: 20px;
+}
+
+#header > .content > p {
+    display: none;
+}
+
+@media screen and (min-width: 600px) {
+    #header > .content > p {
+        display: block;
+    }
+}
+
+#header > .content > p {
+    color: #fff;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+#posts {
+    margin-top: 20px;
+}
+
+p {
+    margin-top: 5px;
+    margin-bottom: 0;
+    color: #333;
+}
+
+pre {
+    font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+    font-size: 14px;
+    background-color: #120020 !important;
+}
+
+code {
+    font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
+    font-size: 14px;
+    margin-right: 5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    background-color: #120020 !important;
+}
+
+code > span.pln:last-child {
+    font-size: 0px;
+}
