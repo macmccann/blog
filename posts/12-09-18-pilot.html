@@ -97,5 +97,9 @@ for latex in latexes:
 </p>
 
 <p>
-  Finally I needed to serve up my files
+  Finally, I needed to serve up my files. Luckily GitHub does free static web hosting with <a href="https://pages.github.com/">GitHub Pages</a>, which I've used for a lot of small projects. Because of the way my script was set up, I needed to serve everything using <code class="prettyprint">public/index.html</code> as the root. A quick search gave me <a href="https://stackoverflow.com/questions/36782467/set-subdirectory-as-website-root-on-github-pages">this StackOverflow post</a> and the necessary git magic, <br><code style="padding-right: 8px" class="prettyprint">git subtree push --prefix dist origin gh-pages</code>.
+</p>
+
+<p>
+  All that was left was to package this up into a script to deploy the site.
 </p>
