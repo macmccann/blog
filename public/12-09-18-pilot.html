@@ -42,7 +42,7 @@
      <h2>
       Pilot
      </h2>
-     <p class="date">
+     <p class="small-gray">
       Published on 12/09/18
      </p>
     </div>
@@ -192,9 +192,25 @@ for latex in latexes:
      .
     </p>
     <p>
-     All that was left was to package this up into a script to deploy the site.
+     All that was left was to bundle everything in a simple deployment script:
     </p>
+    <pre class="prettyprint">
+# build the pages
+cd src
+python3 template.py
+cd ..
+# add all of the public folder
+git add public &amp;&amp; git commit -m "Automatic deployment commit"
+git subtree push --prefix public origin gh-pages
+</pre>
    </div>
+   <p class="small-gray">
+    You can view the source for this post on
+    <a href="https://github.com/macmccann/blog">
+     GitHub
+    </a>
+    .
+   </p>
   </div>
  </body>
 </html>

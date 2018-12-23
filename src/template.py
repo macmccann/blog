@@ -48,7 +48,7 @@ for post_file in post_files:
     title_in_post_soup.string = title
     post_meta_soup.append(title_in_post_soup)
     date_in_post_soup = Soup(features="html.parser").new_tag("p")
-    date_in_post_soup["class"] = "date"
+    date_in_post_soup["class"] = "small-gray"
     date_in_post_soup.string = "Published on " + date_from(post_file)
     post_meta_soup.append(date_in_post_soup)
 

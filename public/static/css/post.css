@@ -18,10 +18,11 @@ p {
     margin: 0;
 }
 
-#post-meta > p {
+.small-gray {
     color: #333333;
     font-size: 13px;
 }
+
 
 #post-meta {
     margin-bottom: 20px;
