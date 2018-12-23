@@ -97,11 +97,6 @@ code {
     font-family: 'IBM Plex Mono', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', Courier, monospace;
     font-size: 14px;
     margin-right: 5px;
-    padding-right: 3px;
-    padding-left: 3px;
+    padding-left: 7px;
     background-color: #120020 !important;
-}
-
-code > span.pln:last-child {
-    font-size: 0px;
 }
