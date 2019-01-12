@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Crossing the Chasm Part 1: APIs
+  </title>
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet"/>
+  <link href="static/css/index.css" rel="stylesheet"/>
+  <link href="static/css/post.css" rel="stylesheet"/>
+  <script async="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst">
+  </script>
+ </head>
+ <body>
+  <div id="header">
+   <div class="content">
+    <h1>
+     <a href="index.html">
+      GTBS
+     </a>
+    </h1>
+    <p>
+     <i>
+      Words about code
+     </i>
+    </p>
+    <span class="links">
+     <a href="https://macmccann.github.io">
+      Personal
+     </a>
+     <a href="https://github.com/macmccann">
+      GitHub
+     </a>
+    </span>
+   </div>
+  </div>
+  <div class="content">
+   <div id="post">
+    <div id="post-meta">
+     <h2>
+      Crossing the Chasm Part 1: APIs
+     </h2>
+     <p class="small-gray">
+      Published on 1/12/19
+     </p>
+    </div>
+    <p>
+     A few times now, someone has come to me and said something along the lines of "Hey! You know how to make apps, right? I know how to write for loops and print out the first n Fibonacci numbers, but that stuff is so boring. I want to make my new billion-dollar idea, Tinder for Pets™! Can you teach me how to do that?"
+    </p>
+    <p>
+     I too had this question the first few years I was coding, and it seemed like no one would tell me how to get from being someone who had completed the Codecademy Java tutorial to making Cool Stuff. This is because Cool Stuff isn't that useful most of the time compared to Boring Stuff like increasing site reliability or migrating databases. However, I think the skills learned along the way can be very helpful, and that's why on our journey to fostering love between dogs, we're going to start by learning how to use APIs.
+    </p>
+    <h3>
+     What's an API, anyway?
+    </h3>
+    <p>
+     I like to think of APIs as plugs between one piece of software (your program) and another (a SQL database, Spotify.com, Minecraft's mod kit). Even though your old Gamecube and your new Apple TV most likely don't speak the same language on the inside, an HDMI plug allows them to communicate. Similarly, APIs allow your half-baked idea to be displayed on someone's screen a thousand miles away when they go to tinderforpets.com. We'll get started with APIs by looking at a simple example: setting up a basic web server.
+    </p>
+    <p>
+     The first thing we'll need to know how to do is navigate around a shell. If you don't already know how to do that,
+     <a href="http://cs.brown.edu/courses/cs0320/docs/basic-shell.html">
+      this guide
+     </a>
+     is a great beginner reference. From now on, if you see code that looks like this:
+    </p>
+    <pre class="prettyprint">
+$ echo wow
+wow
+</pre>
+    <p>
+     It means that these are shell commands and their outputs.
+    </p>
+    <p>
+     Then, we'll need to install
+     <a href="https://nodejs.org/en/">
+      Node.js
+     </a>
+     and
+     <a href="https://expressjs.com/en/starter/installing.html">
+      Express
+     </a>
+     . I chose these two technologies because they're easy to pick up, especially if you've used Java/C/Python before, and they don't have a lot of boilerplate or extra gunk in the code to make a few basic features.
+    </p>
+    <pre class="prettyprint">
+const express = require("express");
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) =&gt; {
+    res.send('Hello World!')
+});
+
+app.listen(port, () =&gt; console.log(`Example app listening on port ${port}!`));
+</pre>
+    <p>
+     This is an express Hello World example, ripped almost verbatim from
+     <a href="https://expressjs.com/en/starter/hello-world.html">
+      Express's docs
+     </a>
+     . Assuming you've followed all of the steps in the Express installation, running it should be as simple as:
+    </p>
+    <pre class="prettyprint">
+$ node index.js
+Example app listening on port 3000!
+</pre>
+    <p>
+     Now, if you open up Chrome/Firefox/Safari/
+     <s>
+      Internet Explorer
+     </s>
+     Edge and type in
+     <code class="prettyprint">
+      localhost:3000
+     </code>
+     in the URL bar, you should get some text saying what we put into
+     <code class="prettyprint">
+      res.send
+     </code>
+     : a cheery "Hello World!".
+    </p>
+    <p>
+     The concept to notice about this example is that we could have put anything into
+     <code class="prettyprint">
+      res.send
+     </code>
+     . We could have put "Welcome to Tinder for Pets!" or an HTML document (which is what we'll do later) or a number that increments any time we execute the code inside that block. The API allows us to do whatever we want inside our program, package it up, and send it to whoever loads our webpage. Soon, we'll be able to create pages that represent pets and send them off whenever someone requests goodboy84's profile.
+    </p>
+    <h3>
+     Mental Models
+    </h3>
+    <p>
+     A common complaint when new coders are encountering abstractions for the first time is "I don't like not knowing how everything works". This normally comes from students who are used to math equations, where each step derives from the next in a way that can be easily checked. A lot of the time though, it's not really about knowing how each part works, but about the model that the abstraction is forcing onto the programmer.
+    </p>
+    <p>
+     The web server we just wrote has a pretty simple model: someone requests "/", we do some calculations, and we send back a response via
+     <code class="prettyprint">
+      res
+     </code>
+     , which ends up being
+     <a href="https://expressjs.com/en/api.html#res">
+      an object
+     </a>
+     representing an HTTP response.
+    </p>
+    <p>
+     Other APIs, however, have a more complicated model. For example, this is the code for Hello World in JavaFX, a technology that allows developers to make desktop applications (i.e. every application that uses a window) with Java:
+    </p>
+    <pre class="prettyprint">
+package helloworld;
+ 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+ 
+public class HelloWorld extends Application {
+    public static void main(String[] args) {
+        launch(args);
+    }
+    
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Hello World!");
+        Button btn = new Button();
+        btn.setText("Say 'Hello World'");
+        btn.setOnAction(new EventHandler<actionevent>() {
+ 
+            @Override
+            public void handle(ActionEvent event) {
+                System.out.println("Hello World!");
+            }
+        });
+        
+        StackPane root = new StackPane();
+        root.getChildren().add(btn);
+        primaryStage.setScene(new Scene(root, 300, 250));
+        primaryStage.show();
+    }
+}
+</actionevent></pre>
+    <p>
+     For a lot of coders who haven't used JavaFX before, this is pretty incomprehensible. What's the difference between a stage and a scene? Can I change the text of the button after putting it into the StackPane? As their project gets larger in complexity, the incomplete mental model of the JavaFX portion interferes with the "business logic" code being written.
+    </p>
+    <p>
+     This makes most people think, "If only I understood the intricate details of how JavaFX works! Then I could make it do what I wanted." But this is exactly what any abstraction is supposed to do: reduce cognitive load and enable you not to care about the details. You don't need to know how circuitry works to trust that your calculator is going to give the right answer when you multiply two numbers, just like you don't need to know the networking layers to set up a web server. That's why, when people say "I don't like trusting these opaque tools", they really mean "I don't fully understand the model being exposed here".
+    </p>
+    <p>
+     That's all for this post. Next time, I'll be getting into the exciting part: makin' your webpages look sick.
+    </p>
+   </div>
+   <p class="small-gray">
+    You can view the source for this post on
+    <a href="https://github.com/macmccann/blog">
+     GitHub
+    </a>
+    .
+   </p>
+  </div>
+ </body>
+</html>

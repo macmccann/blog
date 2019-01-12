@@ -42,12 +42,11 @@ a {
 
 #header > .content > span > a {
     color: #e3e3ee;
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 #header > .content > span > a:clicked {
     color: #e3e3ee;
-    margin-right: 10px;
 }
 
 #header > .content > span {
@@ -59,21 +58,14 @@ a {
 }
 
 .content {
-    width: 95%;
+    width: 32%;
     min-width: 240px;
     margin: auto;
     padding-bottom: 20px;
 }
 
-@media screen and (min-width: 600px) {
-    #header > .content > p {
-        display: block;
-    }
-
-    .content {
-        width: 32%;
-        min-width: 240px;
-    }
+#header > .content > p {
+    display: block;
 }
 
 #header > .content > p {
